@@ -1,0 +1,108 @@
+.tab-item {
+  display: none;
+}
+
+.tab-item.active {
+  display: block;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 15px;
+  padding-left: 0;
+
+}
+
+.tab li {
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.tab li::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: red;
+  bottom: 0;
+  display: block;
+}
+
+.tab li.active {
+  color: red
+}
+
+.tab li.active::before {
+  width: 100%;
+  transition: all .3s ease-in-out;
+}
+
+#form {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#form input {
+  border: 1px solid #f2f2f2;
+  width: 184px;
+  height: 37px;
+  border-radius: 6px;
+  padding-left: 15px;
+}
+
+#form button {
+  border: none;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  width: 184px;
+  height: 37px;
+}
+
+#form button::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  display: block;
+  width: 0;
+  height: 100%;
+  top: 0;
+  background-color: red;
+}
+
+#form button span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+#form button::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  display: block;
+  width: 0;
+  height: 100%;
+  top: 0;
+  background-color: red;
+}
+
+#form button:hover::before,
+#form button:hover::after {
+  width: 50%;
+  transition: all .5s ease-in-out;
+}
+
+input.invalid {
+  outline: 1px solid red !important;
+  transition: all .2s ease-in-out;
+}
