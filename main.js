@@ -27,7 +27,23 @@ function renderTabs() {
   const tabs = document.querySelectorAll('#tab li')
   const tabContents = document.querySelectorAll('.tab-item')
 
-  for (const [i, tab] of tabs.entries()) {
+  // for (const [i, tab] of tabs.entries()) {
+  //   tab.addEventListener('click', function () {
+
+  //     changeTabContent(tabs)
+  //     changeTabContent(tabContents)
+
+  //   })
+
+  //   function changeTabContent(array) {
+  //     for (const elem of array) {
+  //       elem.classList.remove('active')
+  //     }
+  //     array[i].classList.add('active')
+  //   }
+  // }
+
+  tabs.forEach((tab, index) => {
     tab.addEventListener('click', function () {
 
       changeTabContent(tabs)
@@ -36,48 +52,90 @@ function renderTabs() {
     })
 
     function changeTabContent(array) {
-      for (const elem of array) {
+      array.forEach(elem => {
         elem.classList.remove('active')
-      }
-      array[i].classList.add('active')
+      })
+
+      array[index].classList.add('active')
     }
-  }
+  })
 }
 
 renderTabs()
 
 
-const form = document.querySelector('#form')
-const inputName = form.name
-const inputPhone = form.phone
+function validateForm() {
+  const form = document.querySelector('#form')
+  const inputName = form.name
+  const inputPhone = form.phone
 
 
-form.addEventListener('submit', sendForm)
+  form.addEventListener('submit', sendForm)
 
-function sendForm(e) {
-  e.preventDefault()
+  function sendForm(e) {
+    e.preventDefault()
 
-  const name = inputName.value.trim()
-  const phone = inputPhone.value.trim()
+    const name = inputName.value.trim()
+    const phone = inputPhone.value.trim()
 
-  setInvalidStatus(name, inputName)
-  setInvalidStatus(phone, inputPhone)
+    setInvalidStatus(name, inputName)
+    setInvalidStatus(phone, inputPhone)
 
-  function setInvalidStatus(value, input) {
-    if (!value) {
-      input.classList.add('invalid')
-    } else {
-      input.classList.remove('invalid')
+    function setInvalidStatus(value, input) {
+      if (!value) {
+        input.classList.add('invalid')
+      } else {
+        input.classList.remove('invalid')
+      }
     }
+
+    setTimeout(() => {
+      form.querySelectorAll('input').forEach(input => {
+        input.classList.remove('invalid')
+      })
+    }, 500)
+
+  }
+}
+
+validateForm()
+
+
+function modal() {
+  const modal = document.querySelector('#modal')
+  const modalOpenBtn = document.querySelector('#modal-btn')
+  const modalCloseBtn = document.querySelector('#close-modal')
+
+  modalCloseBtn.style.opacity = '0'
+
+  modalOpenBtn.addEventListener('click', () => {
+    modal.classList.add('open')
+
+    setTimeout(() => {
+      modalCloseBtn.style.opacity = '1'
+    }, 3000)
+
+  })
+
+
+  modalCloseBtn.addEventListener('click', closeModal)
+
+  function closeModal() {
+    modal.classList.remove('open')
+    modalCloseBtn.style.opacity = '0'
   }
 
-  setTimeout(() => {
-    form.querySelectorAll('input').forEach(input => {
-      input.classList.remove('invalid')
-    })
-  }, 500)
+  window.addEventListener('click', outsideClick)
 
+  function outsideClick(e) {
+    if (e.target.classList.contains('modal-overlay')) {
+      modal.classList.remove('open')
+      modalCloseBtn.style.opacity = '0'
+    }
+  }
 }
+
+modal()
 
 
 

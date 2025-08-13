@@ -24,6 +24,7 @@
       <li class="active">Tab 1</li>
       <li>Tab 2</li>
       <li>Tab 3</li>
+      <li>Tab 4</li>
     </ul>
     <div class="tabs-content">
       <div class="tab-item active">
@@ -35,6 +36,9 @@
       <div class="tab-item">
         <h2>Tab 3</h2>
       </div>
+      <div class="tab-item">
+        <h2>Tab 4</h2>
+      </div>
     </div>
   </div>
 
@@ -44,6 +48,17 @@
     <input type="tel" id="phone" name="phone" placeholder="Phone">
     <button id="submit" type="submit"><span>Submit</span></button>
   </form>
+
+
+  <button id="modal-btn" class="btn">Show modal</button>
+
+  <div class="modal" id="modal">
+    <div class="modal-close">
+      <button class="close" id="close-modal">&times;</button>
+    </div>
+    <div class="modal-content" id="modal-content"></div>
+  </div>
+  <div class="modal-overlay" id="modal-overlay"></div>
 
 
   <script type="module" src="main.js"></script>
